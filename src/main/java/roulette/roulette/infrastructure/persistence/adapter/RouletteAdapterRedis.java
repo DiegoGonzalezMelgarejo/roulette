@@ -35,4 +35,20 @@ public class RouletteAdapterRedis implements RoulettePort {
         return RouletteMapper.converterListRouletteEntityToListRoulette(rouletteEntities);
     }
 
+    @Override
+    public void openRoulette(Roulette roulette) {
+
+    }
+
+    @Override
+    public Roulette findRouletteById(String id) {
+        RouletteEntity rouletteEntity=(RouletteEntity)this.hashOperations.get(HEADER,id);
+        return RouletteMapper.CreateRoulette(rouletteEntity);
+    }
+
+    @Override
+    public void update(Roulette roulette) {
+        this.createRoulette(roulette);
+    }
+
 }

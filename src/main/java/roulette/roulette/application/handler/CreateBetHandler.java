@@ -1,4 +1,4 @@
 package roulette.roulette.application.handler;
 
-public class OpenBetHandler {
+public class CreateBetHandler {
 }

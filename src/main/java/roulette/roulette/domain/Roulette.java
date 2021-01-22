@@ -17,4 +17,8 @@ public class Roulette {
         this.state = state;
         this.bets= new ArrayList<>();
     }
+
+    public  void setState(Boolean state){
+        this.state=state;
+    }
 }

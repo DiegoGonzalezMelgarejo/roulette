@@ -2,13 +2,12 @@ package roulette.roulette.infrastructure.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import roulette.roulette.application.dto.BetDto;
 import roulette.roulette.application.dto.RouletteDto;
 import roulette.roulette.application.handler.CreateRouletteHandler;
 import roulette.roulette.application.handler.GetRouletteHandler;
+import roulette.roulette.application.handler.OpenRouletteHandler;
 import roulette.roulette.application.mapper.RouletteMapper;
 import roulette.roulette.domain.Roulette;
 import roulette.roulette.domain.service.GetRouletteService;
@@ -23,11 +22,12 @@ public class RouletteController {
 
 private final CreateRouletteHandler createRouletteHandler;
 private final GetRouletteHandler getRouletteHandler;
+private final OpenRouletteHandler openRouletteHandler;
 
-
-    public RouletteController(CreateRouletteHandler createRouletteHandler, GetRouletteHandler getRouletteHandler) {
+    public RouletteController(CreateRouletteHandler createRouletteHandler, GetRouletteHandler getRouletteHandler, OpenRouletteHandler openRouletteHandler) {
         this.createRouletteHandler = createRouletteHandler;
         this.getRouletteHandler = getRouletteHandler;
+        this.openRouletteHandler = openRouletteHandler;
     }
 
     @PostMapping("/")
@@ -41,5 +41,19 @@ private final GetRouletteHandler getRouletteHandler;
     public  ResponseEntity<List<RouletteDto>> getRoulettes(){
         List<RouletteDto>rouletteDtos= this.getRouletteHandler.getRouletteDto();
         return new ResponseEntity<>(rouletteDtos,HttpStatus.OK);
+    }
+
+    @PostMapping("/open/{id}")
+    public  ResponseEntity<ResponseDto> openRoulette(@PathVariable("id") String id){
+        String response=this.openRouletteHandler.openRoulette(id);
+        return new ResponseEntity<>(new ResponseDto(response), HttpStatus.ACCEPTED);
+    }
+
+    @PostMapping("/bet/{id}")
+    public ResponseEntity<ResponseDto> createApuesta(@PathVariable("id") String id,
+                                                     @RequestHeader(value = "rouletteId",required = true) String rouletteId,
+                                                     @RequestBody BetDto betDto){
+        return new ResponseEntity<>(new ResponseDto("response"), HttpStatus.ACCEPTED);
+
     }
 }

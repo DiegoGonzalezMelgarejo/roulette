@@ -8,4 +8,7 @@ public interface RoulettePort {
 
     void createRoulette(Roulette roulette);
     List<Roulette> getRoulettes();
+    void openRoulette(Roulette roulette);
+    Roulette findRouletteById(String id);
+    void update(Roulette roulette);
 }
