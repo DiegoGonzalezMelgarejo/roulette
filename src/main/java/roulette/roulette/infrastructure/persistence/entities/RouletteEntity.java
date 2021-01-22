@@ -19,4 +19,9 @@ public class RouletteEntity implements Serializable {
 
     public RouletteEntity() {
     }
+
+    public RouletteEntity(String id, Boolean status) {
+        this.id = id;
+        this.status = status;
+    }
 }
