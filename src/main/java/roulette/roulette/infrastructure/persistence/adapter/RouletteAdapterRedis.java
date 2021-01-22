@@ -30,6 +30,9 @@ public class RouletteAdapterRedis implements RoulettePort {
 
     @Override
     public List<Roulette> getRoulettes() {
-        return null;
+       List<RouletteEntity> rouletteEntities=this.hashOperations.values(HEADER);
+
+        return RouletteMapper.converterListRouletteEntityToListRoulette(rouletteEntities);
     }
+
 }

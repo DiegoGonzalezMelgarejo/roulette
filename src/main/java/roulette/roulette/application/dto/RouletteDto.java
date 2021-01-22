@@ -9,10 +9,10 @@ import java.util.List;
 @Setter
 public class RouletteDto {
     private String id;
-    private Boolean status;
+    private String status;
     private List<BetDto> betDtos;
 
-    public RouletteDto(String id, Boolean status) {
+    public RouletteDto(String id, String status) {
         this.id = id;
         this.status = status;
     }
