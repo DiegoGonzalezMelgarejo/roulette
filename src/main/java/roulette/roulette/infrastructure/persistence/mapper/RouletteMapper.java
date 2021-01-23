@@ -10,14 +10,22 @@ public class RouletteMapper {
 
 
     public  static RouletteEntity CreateRouletteEntity(Roulette roulette){
-        return new RouletteEntity(roulette.getId(), roulette.getState());
+        RouletteEntity rouletteEntity = new RouletteEntity(roulette.getId(), roulette.getState());
+        if(roulette.getBets()!=null)
+             rouletteEntity.setBets(BetMapper.converterListBetToListBetEntity(roulette.getBets()));
+        return rouletteEntity ;
     }
     public  static  Roulette CreateRoulette(RouletteEntity rouletteEntity){
-        return new Roulette(rouletteEntity.getId(),rouletteEntity.getStatus());
+        Roulette roulette=new Roulette(rouletteEntity.getId(),rouletteEntity.getStatus());
+        if(rouletteEntity.getBets()!=null)
+            roulette.setBets(BetMapper.converterListBetEntityToListBet(rouletteEntity.getBets()));
+        return roulette;
     }
     public static List<Roulette> converterListRouletteEntityToListRoulette(List<RouletteEntity> rouletteEntities){
         List<Roulette>rouletteList= new ArrayList<>();
         rouletteEntities.forEach((final RouletteEntity rouletteEntity)-> rouletteList.add(CreateRoulette(rouletteEntity)));
         return rouletteList;
     }
+
+
 }

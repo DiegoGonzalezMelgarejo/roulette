@@ -11,4 +11,5 @@ public interface RoulettePort {
     void openRoulette(Roulette roulette);
     Roulette findRouletteById(String id);
     void update(Roulette roulette);
+
 }

@@ -15,7 +15,8 @@ public class GetRouletteHandler {
     }
 
     public List<RouletteDto> getRouletteDto(){
-        List<RouletteDto>rouletteDtos= RouletteMapper.converterListRouletteToLisstRouletteDto(this.getRouletteService.getRoulettes());
+        List<RouletteDto>rouletteDtos=
+                RouletteMapper.converterListRouletteToLisstRouletteDto(this.getRouletteService.getRoulettes());
         return rouletteDtos;
     }
 }

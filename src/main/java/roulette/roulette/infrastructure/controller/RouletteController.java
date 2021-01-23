@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import roulette.roulette.application.dto.BetDto;
 import roulette.roulette.application.dto.RouletteDto;
+import roulette.roulette.application.handler.CreateBetHandler;
 import roulette.roulette.application.handler.CreateRouletteHandler;
 import roulette.roulette.application.handler.GetRouletteHandler;
 import roulette.roulette.application.handler.OpenRouletteHandler;
@@ -23,11 +24,12 @@ public class RouletteController {
 private final CreateRouletteHandler createRouletteHandler;
 private final GetRouletteHandler getRouletteHandler;
 private final OpenRouletteHandler openRouletteHandler;
-
-    public RouletteController(CreateRouletteHandler createRouletteHandler, GetRouletteHandler getRouletteHandler, OpenRouletteHandler openRouletteHandler) {
+private final CreateBetHandler createBetHandler;
+    public RouletteController(CreateRouletteHandler createRouletteHandler, GetRouletteHandler getRouletteHandler, OpenRouletteHandler openRouletteHandler,CreateBetHandler createBetHandler) {
         this.createRouletteHandler = createRouletteHandler;
         this.getRouletteHandler = getRouletteHandler;
         this.openRouletteHandler = openRouletteHandler;
+        this.createBetHandler=createBetHandler;
     }
 
     @PostMapping("/")
@@ -51,9 +53,11 @@ private final OpenRouletteHandler openRouletteHandler;
 
     @PostMapping("/bet/{id}")
     public ResponseEntity<ResponseDto> createApuesta(@PathVariable("id") String id,
-                                                     @RequestHeader(value = "rouletteId",required = true) String rouletteId,
+                                                     @RequestHeader(value = "userId",required = true) String userId,
                                                      @RequestBody BetDto betDto){
-        return new ResponseEntity<>(new ResponseDto("response"), HttpStatus.ACCEPTED);
+
+        String message=this.createBetHandler.createBet(id,userId,betDto);
+        return new ResponseEntity<>(new ResponseDto(message), HttpStatus.CREATED);
 
     }
 }

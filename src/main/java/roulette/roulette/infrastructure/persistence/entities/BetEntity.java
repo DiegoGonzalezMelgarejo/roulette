@@ -12,9 +12,12 @@ import java.io.Serializable;
 public class BetEntity implements Serializable {
 
         private  String id;
-        private String number;
-        private String cash;
+        private int number;
+        private String color;
+        private Double cash;
         private UserEntity user;
+
+
 
     public BetEntity() {
     }

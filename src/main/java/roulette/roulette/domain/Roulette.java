@@ -21,4 +21,7 @@ public class Roulette {
     public  void setState(Boolean state){
         this.state=state;
     }
+    public void setBets(List<Bet> bets){
+        this.bets=bets;
+    }
 }
