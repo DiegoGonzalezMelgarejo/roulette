@@ -14,14 +14,18 @@ public class RouletteMapper {
 
     public static Roulette createRoulette(RouletteDto rouletteDto){
         Roulette roulette =new Roulette(rouletteDto.getId(), converterStateRoulettetoBoolean(rouletteDto.getStatus()));
-      if(rouletteDto.getBetDtos()!=null)
+      roulette.setColorWinning(rouletteDto.getColorWinning());
+      roulette.setNumberWinning(rouletteDto.getNumberWinning());
+        if(rouletteDto.getBetDtos()!=null)
             roulette.setBets(BetMapper.converterListBetDtoToBet(rouletteDto.getBetDtos()));
         return roulette;
     }
 
     public static  RouletteDto createRouletteDto(Roulette roulette){
         RouletteDto rouletteDto=new RouletteDto(roulette.getId(),converterStateRoulettetoString(roulette.getState()));
-      if(roulette.getBets()!=null)
+        rouletteDto.setColorWinning(roulette.getColorWinning());
+        rouletteDto.setNumberWinning(roulette.getNumberWinning());
+        if(roulette.getBets()!=null)
          rouletteDto.setBetDtos(BetMapper.converterListBetToBetDto(roulette.getBets()));
         return rouletteDto;
     }

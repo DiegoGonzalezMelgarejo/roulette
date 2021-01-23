@@ -4,10 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import roulette.roulette.domain.port.RoulettePort;
 import roulette.roulette.domain.port.UserPort;
-import roulette.roulette.domain.service.CreateBetService;
-import roulette.roulette.domain.service.CreateRouletteService;
-import roulette.roulette.domain.service.GetRouletteService;
-import roulette.roulette.domain.service.OpenRouletteService;
+import roulette.roulette.domain.service.*;
 
 @Configuration
 public class ConfigurationService {
@@ -27,5 +24,9 @@ public class ConfigurationService {
     @Bean
     public CreateBetService createBetService(RoulettePort roulettePort, UserPort userPort){
         return new CreateBetService(roulettePort,userPort);
+    }
+    @Bean
+    public CloseRouletteService closeRouletteService(RoulettePort roulettePort,UserPort userPort){
+        return  new CloseRouletteService(roulettePort,userPort);
     }
 }

@@ -21,6 +21,7 @@ public class ErrorHandler extends ResponseEntityExceptionHandler {
         this.RESPONSEHTTP.put(BetNumberException.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
         this.RESPONSEHTTP.put(BetTypeException.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
         this.RESPONSEHTTP.put(RouletteNoFoundException.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
+        this.RESPONSEHTTP.put(RouletteStateException.class.getSimpleName(), HttpStatus.BAD_REQUEST.value());
     }
     @ExceptionHandler(Exception.class)
     public final ResponseEntity<MessageHandler> showException(Exception exception){

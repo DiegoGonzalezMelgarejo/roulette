@@ -12,10 +12,17 @@ public class BetMapper {
 
 
     public static Bet createBet(BetDto betDto){
-        return new Bet(betDto.getId(), betDto.getNumber(),betDto.getColor(),betDto.getCash());
+        Bet bet=new Bet(betDto.getId(), betDto.getNumber(),betDto.getColor(),betDto.getCash());
+        bet.setCashWinning(betDto.getCashWinning());
+        bet.setStatus(betDto.getStatus());
+        return bet ;
     }
     public static  BetDto createBetDto(Bet bet){
-        return new BetDto(bet.getId() ,bet.getNumber(),bet.getColor(),bet.getCash(),UserMapper.CreaeteUserDto(bet.getUser()));
+        BetDto betDto =new BetDto(bet.getId() ,bet.getNumber(),bet.getColor(),bet.getCash(),UserMapper.CreaeteUserDto(bet.getUser()));
+            betDto.setCashWinning(bet.getCashWinning());
+            betDto.setStatus(bet.getStatus());
+        return betDto;
+
     }
     public static List<Bet>  converterListBetDtoToBet(List<BetDto> betDtos){
         List<Bet> bets= new ArrayList<>();

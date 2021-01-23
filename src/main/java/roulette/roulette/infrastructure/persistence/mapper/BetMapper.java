@@ -17,12 +17,16 @@ public class BetMapper {
         betEntity.setCash(bet.getCash());
         betEntity.setUser(UserMapper.createUserEntity(bet.getUser()));
         betEntity.setColor(bet.getColor());
+        betEntity.setCashWinning(bet.getCashWinning());
+        betEntity.setStatus(bet.getStatus());
         return  betEntity;
     }
 
     public static  Bet createBet(BetEntity betEntity){
         Bet bet= new Bet(betEntity.getId(),betEntity.getNumber(),betEntity.getColor(),betEntity.getCash());
         bet.setUser(UserMapper.createUser(betEntity.getUser()));
+        bet.setCashWinning(betEntity.getCashWinning());
+        bet.setStatus(betEntity.getStatus());
         return bet;
 
     }

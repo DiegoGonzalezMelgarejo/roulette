@@ -16,6 +16,8 @@ public class RouletteEntity implements Serializable {
     private String id;
     private Boolean status;
     private List<BetEntity> bets= new ArrayList<>();
+    private int numberWinning;
+    private String ColorWinning;
 
     public RouletteEntity() {
     }

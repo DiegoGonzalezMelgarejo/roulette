@@ -11,12 +11,16 @@ public class RouletteMapper {
 
     public  static RouletteEntity CreateRouletteEntity(Roulette roulette){
         RouletteEntity rouletteEntity = new RouletteEntity(roulette.getId(), roulette.getState());
+        rouletteEntity.setColorWinning(roulette.getColorWinning());
+        rouletteEntity.setNumberWinning(roulette.getNumberWinning());
         if(roulette.getBets()!=null)
              rouletteEntity.setBets(BetMapper.converterListBetToListBetEntity(roulette.getBets()));
         return rouletteEntity ;
     }
     public  static  Roulette CreateRoulette(RouletteEntity rouletteEntity){
         Roulette roulette=new Roulette(rouletteEntity.getId(),rouletteEntity.getStatus());
+        roulette.setNumberWinning(rouletteEntity.getNumberWinning());
+        roulette.setColorWinning(rouletteEntity.getColorWinning());
         if(rouletteEntity.getBets()!=null)
             roulette.setBets(BetMapper.converterListBetEntityToListBet(rouletteEntity.getBets()));
         return roulette;

@@ -34,4 +34,9 @@ public class UserAdapterRedis implements UserPort {
         else
             return null;
     }
+
+    @Override
+    public void updateUser(User user) {
+        createUser(user);
+    }
 }

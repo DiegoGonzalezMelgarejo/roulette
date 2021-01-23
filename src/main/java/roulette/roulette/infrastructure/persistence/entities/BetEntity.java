@@ -15,8 +15,9 @@ public class BetEntity implements Serializable {
         private int number;
         private String color;
         private Double cash;
+        private Double cashWinning;
         private UserEntity user;
-
+        private String status;
 
 
     public BetEntity() {
